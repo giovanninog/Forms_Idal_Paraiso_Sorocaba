@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIPA - Formulário de Denúncia</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Nogueira Segurança do Trabalho</div>
+    </header>
+
+    <main class="form-container">
+        <div class="form-box">
+            <div class="form-header">
+                <h1>COMISSÃO INTERNA DE PREVENÇÃO DE ACIDENTES E ASSÉDIO</h1>
+                <h2>FORMULÁRIO DE DENUNCIA - ASSÉDIO MORAL, ASSÉDIO SEXUAL E OUTRAS FORMAS DE DISCRIMINAÇÃO</h2>
+            </div>
+
+            <div class="info-section">
+                <p><strong>O QUE É ASSÉDIO MORAL?</strong> O Assédio pode ser entendido como "condutas abusivas exaradas por meio de Palavras, comportamentos, atos, gestos, escritos que podem trazer danos à personalidade, à dignidade ou a integridade física ou psiquica de uma pessoa, por em perigo o seu emprego ou degradar o ambiente de trabalho".</p>
+                <p><strong>O QUE É ASSÉDIO SEXUAL? CRIME!</strong> O Ministério Público do Trabalho, juntamente com a Organização Internacional do Trabalho, estabelece o Assédio Sexual no ambiente do Trabalho como "a conduta de natureza sexual, manifestada fisicamente, por palavras, gestos ou outros meios, propostas ou impostas a pessoas contra a sua vontade, causando-lhe constrangimento e violando a sua liberdade sexual".</p>
+                <p><strong>O QUE É DISCRIMINAÇÃO?</strong> "A discriminação é uma preocupação social grave que se manifesta através do tratamento diferenciado a indivíduos como toda distinção, exclusão, restrição ou preferência fundada na raça, etnia, cor, sexo, gênero, religião, deficiência, opinião política, ascendência nacional, origem social, idade, orientação sexual, identidade e expressão de gênero, ou qualquer outra que atente contra o reconhecimento ou exercício, em condições de idade...".</p>
+                <p><strong>REGULAMENTAÇÃO:</strong> <a href="https://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2022/Lei/L14457.htm" target="_blank">Lei nº 14.457/2022</a></p> 
+                <p><strong>PORTARIA 4.219 DE 20 DE DEZEMBRO DE 2022</strong></p>
+            </div>
+
+            <hr class="divider">
+
+            <form id="denuncia-form" onsubmit="gerarPDFDenuncia(event)">
+                
+                <div class="input-group">
+                    <label class="field-label">Tipo de Denúncia (Selecione as opções aplicáveis)</label>
+                    <div class="checkbox-grid-4">
+                        <label class="checkbox-item"><input type="checkbox" name="tipo_denuncia" value="Assédio Moral"> Assédio Moral</label>
+                        <label class="checkbox-item"><input type="checkbox" name="tipo_denuncia" value="Assédio Sexual"> Assédio Sexual</label>
+                        <label class="checkbox-item"><input type="checkbox" name="tipo_denuncia" value="Discriminação"> Discriminação</label>
+                        <label class="checkbox-item"><input type="checkbox" name="tipo_denuncia" value="Outros"> Outros desvios</label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="cnpj" class="field-label">CNPJ</label>
+                    <input type="text" id="cnpj" maxlength="18" placeholder="00.000.000/0000-00" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="local_incidente" class="field-label">Local que ocorreu ou ocorre o incidente</label>
+                    <input type="text" id="local_incidente" placeholder="Ex: Hortifruti" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="nome_denunciante" class="field-label">Nome do Denunciante - (OBRIGATÓRIO):</label>
+                    <input type="text" id="nome_denunciante" placeholder="Digite seu nome completo" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="nome_social" class="field-label">Nome Social (Opcional):</label>
+                    <input type="text" id="nome_social" placeholder="Digite seu nome social (se aplicável)">
+                </div>
+
+                <div class="input-group">
+                    <label for="telefone" class="field-label">Telefone para contato:</label>
+                    <input type="tel" id="telefone" maxlength="15" placeholder="(00) 00000-0000" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="email" class="field-label">E-mail para contato:</label>
+                    <input type="email" id="email" placeholder="exemplo@email.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label class="field-label">Gênero</label>
+                    <div class="checkbox-grid-8">
+                        <label class="checkbox-item"><input type="radio" name="genero" value="Masculino" required> Masculino </label>
+                        <label class="checkbox-item"><input type="radio" name="genero" value="Feminino"> Feminino </label>
+                        <label class="checkbox-item"><input type="radio" name="genero" value="Transgênero"> Transgênero </label>
+                        <label class="checkbox-item"><input type="radio" name="genero" value="Gênero Neutro"> Gênero Neutro </label>
+                        <label class="checkbox-item"><input type="radio" name="genero" value="Não Binário"> Não Binário </label>
+                        <label class="checkbox-item"><input type="radio" name="genero" value="Agênero"> Agênero </label>
+                        <label class="checkbox-item"><input type="radio" name="genero" value="Pangênero"> Pangênero </label>
+                        <label class="checkbox-item"><input type="radio" name="genero" value="Nenhuma das Anteriores"> Nenhuma das Anteriores </label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="nome_denunciado" class="field-label">Nome do(a) denunciado(a)</label>
+                    <input type="text" id="nome_denunciado" placeholder="Digite o nome do envolvido" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="cargo_denunciado" class="field-label">Cargo ou Função do(a) Denunciado(a)</label>
+                    <input type="text" id="cargo_denunciado" placeholder="Digite o cargo ou função." required>
+                </div>
+
+                <div class="input-group">
+                    <label for="setor_denunciado" class="field-label">Setor ou local de trabalho do(a) denunciado(a)</label>
+                    <input type="text" id="setor_denunciado" placeholder="Digite o setor ou local de trabalho" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="narracao_fatos" class="field-label">Narração dos Fatos</label>
+                    <textarea id="narracao_fatos" rows="4" placeholder="Fale sobre o ocorrido." required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="o_que_aconteceu" class="field-label">O que aconteceu ou tem acontecido?</label>
+                    <textarea id="o_que_aconteceu" rows="3" placeholder="Descreva os detalhes dos acontecimentos." required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="forma_ocorrido" class="field-label">De que forma ocorreu ou ocorre?</label>
+                    <input type="text" id="forma_ocorrido" placeholder="Ex: Verbalmente, por e-mail, gestos..." required>
+                </div>
+
+                <div class="input-group">
+                    <label for="frequencia" class="field-label">Com que frequência tem acontecido?</label>
+                    <input type="text" id="frequencia" placeholder="Ex: Diariamente, uma única vez, semanalmente..." required>
+                </div>
+
+                <div class="input-group">
+                    <label for="testemunhas" class="field-label">Você estava só ou havia outras pessoas no momento?</label>
+                    <input type="text" id="testemunhas" placeholder="Especifique se houveram testemunhas" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="consequencias" class="field-label">Quais consequências tem acarretado para você e a empresa?</label>
+                    <textarea id="consequencias" rows="3" placeholder="Impactos psicológicos, profissionais, de saúde, etc." required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="data_horario" class="field-label">Qual foi a data dos fato(s) ocorrido(s) e qual foi o horário?</label>
+                    <input type="text" id="data_horario" placeholder="Ex: 12/04 às 14:30 ou Desde Janeiro/2026" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="observacoes" class="field-label">Outras Observações:</label>
+                    <input type="text" id="observacoes" placeholder="Inserir informações adicionais relevantes" >
+                </div>
+
+                <div class="info-section">
+                    <p><strong>OBSERVAÇÃO:</strong> A DENÚNCIA NÃO É ANÔNIMA, MAS É SIGILOSA (SEUS DADOS NÃO SERÃO DIVULGADOS).</p>
+                </div>
+
+                <div class="info-section">
+                    <label class="checkbox-item" style="background: transparent; padding: 0;">
+                        <input type="checkbox" name="termo_responsabilidade" value="Aceito" style="margin-right: 12px;" required> 
+                        <span>Estou ciente que as informações fornecidas neste documento são verdadeiras e que informar falsa denúncia poderá ser considerada como crime contra a honra, previsto nos Artigos 138 e 140 do Código Penal Brasileiro. Ao enviar este formulário de denúncia assumo total responsabilidade pelo conteúdo informado.</span>
+                    </label>
+                </div>
+
+                <div class="info-section" style="border-left-color: #ef4444;">
+                    <p><strong>CANAIS DE DENÚNCIA ADICIONAIS:</strong></p>
+                    <p><a href="https://www.scsorocaba.com.br/assistencia-juridica-trabalhista-e-previdenciaria/" target="_blank">Sindicato dos Comerciários de Sorocaba e Região</a> - Rua Francisco Scarpa, 269 Centro - Sorocaba | SP CEP: 18.035-020 — Telefone/WhatsApp: (15) 99118-7712 (Jurídico).</p>
+                    <p>E-mail Corporativo: <strong>rh@supparaiso.com.br</strong></p>
+                    <p><a href="https://delegaciadigital.policia-civil.sp.gov.br/pagina-inicial" target="_blank">DELEGACIA DE DEFESA DA MULHER DE SOROCABA</a> — R. Caracas, 846 - Jardim América, Sorocaba - SP — Telefone: (15) 3232-1417</p>
+                    <p>Central de Atendimento à Mulher – <strong>Ligue 180</strong></p>
+                </div>
+                
+                <br>
+                <div class="btn-container">
+                    <button type="submit" class="btn-submit">Gerar Formulário (PDF)</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Nogueira Segurança do Trabalho. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
