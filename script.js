@@ -244,7 +244,7 @@ doc.text(
 );
 
 doc.text(
-    "Nogueira Segurança do Trabalho",
+    "(NOME DA EMPRESA)",
     195,
     alturaPagina - 10,
     { align: "right" }
