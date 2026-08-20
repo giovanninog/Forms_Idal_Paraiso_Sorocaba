@@ -126,7 +126,7 @@ async function gerarPDFDenuncia(event) {
     doc.autoTable({
         startY: 35,
         theme: "grid",
-        head: [["Campo", "Informação"]],
+        head: [["Dados de Denúncia", "Informação"]],
         body: [
             ["Tipo de denúncia", tiposDenuncia || "Não informado"],
             ["CNPJ", dados.cnpj || "Não informado"],
@@ -180,14 +180,14 @@ async function gerarPDFDenuncia(event) {
         startY: 30,
         theme: "grid",
         body: [
-            ["Narração dos fatos", dados.narracao],
-            ["O que aconteceu", dados.aconteceu],
-            ["Forma de ocorrência", dados.forma],
-            ["Frequência", dados.frequencia],
-            ["Testemunhas", dados.testemunhas],
-            ["Consequências", dados.consequencias],
-            ["Data e horário", dados.dataHorario],
-            ["Observações", dados.observacoes || "-"]
+            ["Narração dos fatos:", dados.narracao],
+            ["O que aconteceu?", dados.aconteceu],
+            ["Forma de ocorrência:", dados.forma],
+            ["Frequência:", dados.frequencia],
+            ["Testemunhas:", dados.testemunhas],
+            ["Consequências:", dados.consequencias],
+            ["Data e horário:", dados.dataHorario],
+            ["Observações:", dados.observacoes || "-"]
         ],
         columnStyles: {
             0: { cellWidth: 50 },
