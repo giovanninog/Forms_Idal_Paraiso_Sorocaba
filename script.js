@@ -244,7 +244,7 @@ doc.text(
 );
 
 doc.text(
-    "(NOME DA EMPRESA)",
+    "SATO & NISHI LTDA",
     195,
     alturaPagina - 10,
     { align: "right" }
